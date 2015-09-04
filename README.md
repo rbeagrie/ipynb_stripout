@@ -1,20 +1,31 @@
-ipynb_template
-==============
+# ipynb_stripout
 
-Template for creating a new git repo for an ipython notebook
+Output cells make it difficult to manage iPython notebooks under Git. Diffs become noisy and merge conflicts become common.
 
-1. Clone this repository 
-1. Rename the directory to something meaningful
+This has been adapted from cfriedline's [ipynb_template](https://github.com/cfriedline/ipynb_template) and minrk's original [gist](https://gist.github.com/minrk/6176788) with the goal of making output stripping as easy as possible.
 
-1. Make sure `nbstripout` is in your path and chmod +x
+## 1) Install (OS X)
 
-1. Add the following to your .gitconfig:
+First you need to install the `ipynb_stripout` script. Run the following from your terminal:
 
-    	[filter "nbstrip"]        
-    	    clean = /home/cfriedline/bin/nbstripout
-    		smudge =cat
-    		required
+	wget -O /usr/local/bin/ipynb_stripout "https://raw.githubusercontent.com/jond3k/ipynb_stripout/master/ipynb_stripout"
+	chmod +x /usr/local/bin/ipynb_stripout
 
-1. create a new github repo and change the origin in `.git/config`
-    
-    	git remote set-url origin git@github.com:cfriedline/[new_repo].git
+## 2) Configure git
+
+To make it optionally available to all your git repositories:
+
+	git config --global filter.ipynb_stripout.clean ipynb_stripout
+	git config --global filter.ipynb_stripout.smudge cat
+	git config --global filter.ipynb_stripout.required
+	
+
+## 3) Add to repository
+
+Go to the root of the repository you want to add it to and  `.gitattributes` with the following line:
+
+	echo "*.ipynb filter=ipynb_stripout" >> .gitattributes
+	
+Now you can commit the attributes. __Note that all other devs will need to follow these steps!__
+
+	git commit -m "Added ipynb_stripout. See https://github.com/ipynb_stripout/ipynb_stripout" .gitattributes 
