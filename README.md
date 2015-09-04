@@ -28,4 +28,5 @@ Go to the root of the repository you want to add it to and  `.gitattributes` wit
 	
 Now you can commit the attributes. __Note that all other devs will need to follow these steps!__
 
-	git commit -m "Added ipynb_stripout. See https://github.com/ipynb_stripout/ipynb_stripout" .gitattributes 
+	git add .gitattributes
+	git commit -m "Added ipynb_stripout. See https://github.com/jond3k/ipynb_stripout" .gitattributes 
