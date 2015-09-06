@@ -26,7 +26,7 @@ Go to the root of the repository you want to add it to and  `.gitattributes` wit
 
 	echo "*.ipynb filter=ipynb_stripout" >> .gitattributes
 	
-Now you can commit the attributes. __Note that all other devs will need to follow these steps!__
+Now you can commit the attributes.
 
 	git add .gitattributes
 	git commit -m "Added ipynb_stripout. See https://github.com/jond3k/ipynb_stripout" .gitattributes 
